@@ -8,18 +8,18 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @author  ##author_placeholder
+ * @author ##author_placeholder
  * @version ##version_placeholder##
  */
 
-namespace Elcodi\CartBundle\Tests\Functional\Services;
+namespace Elcodi\CartBundle\Tests\Functional\Factory;
 
 use Elcodi\CoreBundle\Tests\WebTestCase;
 
 /**
- * Tests CartManager class
+ * Class OrderLineFactoryTest
  */
-class CartManagerTest extends WebTestCase
+class OrderLineFactoryTest extends WebTestCase
 {
     /**
      * Returns the callable name of the service
@@ -28,16 +28,17 @@ class CartManagerTest extends WebTestCase
      */
     public function getServiceCallableName()
     {
-        return 'elcodi.core.cart.service.cart_manager';
+        return 'elcodi.core.cart.factory.order_line';
     }
 
     /**
-     * Returns if service must be retrieved from container
-     *
-     * @return boolean
+     * Test order_line factory provider
      */
-    protected function mustTestGetService()
+    public function testFactoryProvider()
     {
-        return false;
+        $this->assertInstanceOf(
+            $this->container->getParameter('elcodi.core.cart.entity.order_line.class'),
+            $this->container->get('elcodi.core.cart.entity.order_line.instance')
+        );
     }
 }
