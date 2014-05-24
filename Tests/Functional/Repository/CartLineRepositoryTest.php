@@ -12,14 +12,14 @@
  * @version ##version_placeholder##
  */
 
-namespace Elcodi\CartBundle\Tests\Functional\Factory;
+namespace Elcodi\CartBundle\Tests\Functional\Repository;
 
 use Elcodi\CoreBundle\Tests\WebTestCase;
 
 /**
- * Class OrderFactoryTest
+ * Class CartLineRepositoryTest
  */
-class OrderFactoryTest extends WebTestCase
+class CartLineRepositoryTest extends WebTestCase
 {
     /**
      * Returns the callable name of the service
@@ -29,30 +29,30 @@ class OrderFactoryTest extends WebTestCase
     public function getServiceCallableName()
     {
         return [
-            'elcodi.core.cart.factory.order',
-            'elcodi.factory.order',
+            'elcodi.core.cart.repository.cart_line',
+            'elcodi.repository.cart_line',
         ];
     }
 
     /**
-     * Test order factory provider
+     * Test cart_line repository provider
      */
     public function testFactoryProvider()
     {
         $this->assertInstanceOf(
-            $this->container->getParameter('elcodi.core.cart.entity.order.class'),
-            $this->container->get('elcodi.core.cart.entity.order.instance')
+            $this->container->getParameter('elcodi.core.cart.repository.cart_line.class'),
+            $this->container->get('elcodi.core.cart.repository.cart_line')
         );
     }
 
     /**
-     * Test order factory provider alias
+     * Test cart_line repository provider alias
      */
     public function testFactoryProviderAlias()
     {
         $this->assertInstanceOf(
-            $this->container->getParameter('elcodi.core.cart.entity.order.class'),
-            $this->container->get('elcodi.entity.order.instance')
+            $this->container->getParameter('elcodi.core.cart.repository.cart_line.class'),
+            $this->container->get('elcodi.repository.cart_line')
         );
     }
 }
