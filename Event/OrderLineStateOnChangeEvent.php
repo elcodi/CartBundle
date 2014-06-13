@@ -8,7 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @author ##author_placeholder
+ * @author  ##author_placeholder
  * @version ##version_placeholder##
  */
 
@@ -20,37 +20,44 @@ use Elcodi\CartBundle\Entity\Interfaces\OrderLineInterface;
 use Elcodi\CartBundle\Event\Abstracts\AbstractOrderLineStateEvent;
 
 /**
- * Event fired when a new state is added into OrderLineHistory
+ * Event dispatched when a new state is added into OrderLineHistory
  *
  * This event saves Order line and new state
  */
-class OrderLineStatePostChangeEvent extends AbstractOrderLineStateEvent
+class OrderLineStateOnChangeEvent extends AbstractOrderLineStateEvent
 {
     /**
      * @var OrderLineHistoryInterface
      *
-     * OrderLineHistory object
+     * New OrderLineHistory
      */
-    protected $orderLineHistory;
+    protected $newOrderLineHistory;
 
     /**
      * construct method
      *
-     * @param OrderInterface            $order                Order
-     * @param OrderLineInterface        $orderLine            Order line
-     * @param OrderLineHistoryInterface $lastOrderLineHistory Last OrderLine history
-     * @param OrderLineHistoryInterface $orderLineHistory     OrderLine History
+     * @param OrderInterface            $order                Used Order
+     * @param OrderLineInterface        $orderLine            Used OrderLine
+     * @param OrderLineHistoryInterface $lastOrderLineHistory Last OrderLineHistory
+     * @param OrderLineHistoryInterface $newOrderLineHistory  New OrderLineHistory
+     * @param string                    $newState             New state to reach
      */
     public function __construct(
         OrderInterface $order,
         OrderLineInterface $orderLine,
         OrderLineHistoryInterface $lastOrderLineHistory,
-        OrderLineHistoryInterface $orderLineHistory
+        OrderLineHistoryInterface $newOrderLineHistory,
+        $newState
     )
     {
-        parent::__construct($order, $orderLine, $lastOrderLineHistory);
+        parent::__construct(
+            $order,
+            $orderLine,
+            $lastOrderLineHistory,
+            $newState
+        );
 
-        $this->orderLineHistory = $orderLineHistory;
+        $this->newOrderLineHistory = $newOrderLineHistory;
     }
 
     /**
@@ -58,8 +65,8 @@ class OrderLineStatePostChangeEvent extends AbstractOrderLineStateEvent
      *
      * @return OrderLineHistoryInterface OrderLineHistory object
      */
-    public function getOrderLineHistory()
+    public function getNewOrderLineHistory()
     {
-        return $this->orderLineHistory;
+        return $this->newOrderLineHistory;
     }
 }

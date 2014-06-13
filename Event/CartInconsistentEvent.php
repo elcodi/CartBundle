@@ -8,18 +8,17 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @author ##author_placeholder
+ * @author  ##author_placeholder
  * @version ##version_placeholder##
  */
 
-namespace Elcodi\CartBundle\Exception;
+namespace Elcodi\CartBundle\Event;
 
-use Elcodi\CartBundle\Exception\Abstracts\AbstractCartException;
+use Elcodi\CartBundle\Event\Abstracts\AbstractCartLineEvent;
 
 /**
- * Custom CartLineProductUnavailableException
+ * Class CartInconsistentEvent
  */
-class CartLineProductUnavailableException extends AbstractCartException
+class CartInconsistentEvent extends AbstractCartLineEvent
 {
-
 }

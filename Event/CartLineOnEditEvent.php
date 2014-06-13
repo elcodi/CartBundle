@@ -8,18 +8,18 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @author ##author_placeholder
+ * @author  ##author_placeholder
  * @version ##version_placeholder##
  */
 
 namespace Elcodi\CartBundle\Event;
 
-use Elcodi\CartBundle\Event\Abstracts\AbstractCartEvent;
+use Elcodi\CartBundle\Event\Abstracts\AbstractCartLineEvent;
 
 /**
- * Class CartPreCheckEvent
+ * Class CartLineOnEditEvent
  */
-class CartPreCheckEvent extends AbstractCartEvent
+class CartLineOnEditEvent extends AbstractCartLineEvent
 {
 
 }

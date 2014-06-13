@@ -8,7 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @author ##author_placeholder
+ * @author  ##author_placeholder
  * @version ##version_placeholder##
  */
 
@@ -19,33 +19,39 @@ use Elcodi\CartBundle\Entity\Interfaces\OrderInterface;
 use Elcodi\CartBundle\Event\Abstracts\AbstractOrderStateEvent;
 
 /**
- * Event fired when a new state is added into OrderHistory
+ * Event dispatched when a new state is added into OrderHistory
  */
-class OrderStatePostChangeEvent extends AbstractOrderStateEvent
+class OrderStateOnChangeEvent extends AbstractOrderStateEvent
 {
     /**
      * @var OrderHistoryInterface
      *
-     * Current OrderHistory object
+     * New OrderHistory object
      */
-    protected $orderHistory;
+    protected $newOrderHistory;
 
     /**
      * construct method
      *
      * @param OrderInterface        $order            Order
      * @param OrderHistoryInterface $lastOrderHistory Last OrderHistory
-     * @param OrderHistoryInterface $orderHistory     Current OrderHistory
+     * @param OrderHistoryInterface $newOrderHistory  New OrderHistory
+     * @param string                $newState         New state to reach
      */
     public function __construct(
         OrderInterface $order,
         OrderHistoryInterface $lastOrderHistory,
-        OrderHistoryInterface $orderHistory
+        OrderHistoryInterface $newOrderHistory,
+        $newState
     )
     {
-        parent::__construct($order, $lastOrderHistory);
+        parent::__construct(
+            $order,
+            $lastOrderHistory,
+            $newState
+        );
 
-        $this->orderHistory = $orderHistory;
+        $this->newOrderHistory = $newOrderHistory;
     }
 
     /**
@@ -53,8 +59,8 @@ class OrderStatePostChangeEvent extends AbstractOrderStateEvent
      *
      * @return OrderHistoryInterface current OrderHistory object
      */
-    public function getOrderHistory()
+    public function getNewOrderHistory()
     {
-        return $this->orderHistory;
+        return $this->newOrderHistory;
     }
 }
