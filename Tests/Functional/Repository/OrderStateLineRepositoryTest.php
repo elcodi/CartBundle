@@ -19,9 +19,9 @@ namespace Elcodi\Bundle\CartBundle\Tests\Functional\Repository;
 use Elcodi\Bundle\TestCommonBundle\Functional\WebTestCase;
 
 /**
- * Class OrderHistoryRepositoryTest
+ * Class OrderStateLineRepositoryTest
  */
-class OrderHistoryRepositoryTest extends WebTestCase
+class OrderStateLineRepositoryTest extends WebTestCase
 {
     /**
      * Schema must be loaded in all test cases
@@ -41,8 +41,8 @@ class OrderHistoryRepositoryTest extends WebTestCase
     public function getServiceCallableName()
     {
         return [
-            'elcodi.core.cart.repository.order_history',
-            'elcodi.repository.order_history',
+            'elcodi.core.cart.repository.order_state_line',
+            'elcodi.repository.order_state_line',
         ];
     }
 
@@ -52,8 +52,8 @@ class OrderHistoryRepositoryTest extends WebTestCase
     public function testFactoryProvider()
     {
         $this->assertInstanceOf(
-            $this->getParameter('elcodi.core.cart.repository.order_history.class'),
-            $this->get('elcodi.core.cart.repository.order_history')
+            $this->getParameter('elcodi.core.cart.repository.order_state_line.class'),
+            $this->get('elcodi.core.cart.repository.order_state_line')
         );
     }
 
@@ -63,8 +63,8 @@ class OrderHistoryRepositoryTest extends WebTestCase
     public function testFactoryProviderAlias()
     {
         $this->assertInstanceOf(
-            $this->getParameter('elcodi.core.cart.repository.order_history.class'),
-            $this->get('elcodi.repository.order_history')
+            $this->getParameter('elcodi.core.cart.repository.order_state_line.class'),
+            $this->get('elcodi.repository.order_state_line')
         );
     }
 }

@@ -1,15 +1,15 @@
-Elcodi\Component\Cart\Entity\OrderLineHistory:
+Elcodi\Component\Cart\Entity\OrderStateLine:
     type: entity
-    repositoryClass: Elcodi\Component\Cart\Repository\OrderLineHistoryRepository
-    table: order_line_history
+    repositoryClass: Elcodi\Component\Cart\Repository\OrderStateLineRepository
+    table: order_state_line
     id:
         id:
             type: integer
             generator:
                 strategy: AUTO
     fields:
-        state:
-            column: state
+        name:
+            column: name
             type: string
             length: 255
             nullable: false
@@ -26,12 +26,12 @@ Elcodi\Component\Cart\Entity\OrderLineHistory:
             type: datetime
 
     manyToOne:
-        orderLine:
-            targetEntity: Elcodi\Component\Cart\Entity\Interfaces\OrderLineInterface
-            inversedBy: orderLineHistories
+        order:
+            targetEntity: Elcodi\Component\Cart\Entity\Interfaces\OrderInterface
+            inversedBy: stateLines
             cascade: [ "all" ]
             joinColumn:
-                name: order_line_id
+                name: order_id
                 referencedColumnName: id
                 nullable: false
 
