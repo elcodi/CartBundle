@@ -18,13 +18,14 @@
 namespace Elcodi\Bundle\CartBundle\Tests\Functional\Services;
 
 use Elcodi\Bundle\CartBundle\Tests\Functional\Services\Abstracts\AbstractCartManagerTest;
+use Elcodi\Component\Product\Entity\Interfaces\PurchasableInterface;
 
 /**
- * Tests CartManager class.
+ * Class CartManagerPackWithSpecificStockTest.
  *
- * This will test CartManager common methods using a Product with no variants
+ * This will test CartManager common methods using a Pack with specific stock
  */
-class CartManagerProductTest extends AbstractCartManagerTest
+class CartManagerPackWithSpecificStockTest extends AbstractCartManagerTest
 {
     /**
      * Load fixtures of these bundles.
@@ -34,6 +35,7 @@ class CartManagerProductTest extends AbstractCartManagerTest
     protected static function loadFixturesBundles()
     {
         return [
+            'ElcodiCartBundle',
             'ElcodiProductBundle',
         ];
     }
@@ -41,11 +43,11 @@ class CartManagerProductTest extends AbstractCartManagerTest
     /**
      * Creates, flushes and returns a Purchasable.
      *
-     * @return mixed
+     * @return PurchasableInterface
      */
     protected function createPurchasable()
     {
-        return $this->find('product', 1);
+        return $this->find('product_pack', 1);
     }
 
     /**
@@ -59,7 +61,7 @@ class CartManagerProductTest extends AbstractCartManagerTest
             [0, 0, 0],
             [1, -1, 0],
             [1, -2, 0],
-            [1, 10, 10],
+            [1, 20, 10],
             [1, false, 1],
             [1, null, 1],
             [1, true, 1],
@@ -79,7 +81,7 @@ class CartManagerProductTest extends AbstractCartManagerTest
             [1, 0, 1],
             [1, 2, 0],
             [1, -1, 2],
-            [1, -10, 10],
+            [1, -20, 10],
             [1, false, 1],
             [1, null, 1],
             [1, true, 1],
@@ -100,7 +102,7 @@ class CartManagerProductTest extends AbstractCartManagerTest
             [1, 2, 2],
             [1, -1, 0],
             [1, 10, 10],
-            [1, 11, 10],
+            [1, 21, 10],
             [1, false, 1],
             [1, null, 1],
             [1, true, 1],
@@ -118,7 +120,7 @@ class CartManagerProductTest extends AbstractCartManagerTest
         return [
             [1, 1],
             [0, 0],
-            [11, 10],
+            [21, 10],
             [false, 0],
             [null, 0],
             [true, 0],
